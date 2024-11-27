@@ -25,7 +25,9 @@ jobs:
       run: docker-compose up -d postgres
 
     - name: Lint 
-      run: docker run --rm -itv $(CURDIR):/app -w /app golangci/golangci-lint golangci-lint run controllers/ database/ models/ routes/
-
+      uses: golangci-golang-lint-action@v6
+      with:
+        version: 1.59
+        
     - name: Test
       run: go test -v main_test.go
